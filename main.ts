@@ -3,11 +3,19 @@ var table = document.getElementById("table"),
   tieScore = document.getElementsByTagName("p")[1],
   oScore = document.getElementsByTagName("p")[2]
 
-function all(valOne: string | boolean, valTwo: string | boolean, valThree?: string | boolean) {
+function allMatch(valOne: string, valTwo: string, valThree: string) {
     return valOne === valTwo && valOne === valThree ? true : false;
 }
 
-function atLeastOne(one: boolean, two: boolean, three: boolean, four: boolean){
+function allTrue(one: boolean, two: boolean, three?: boolean){
+  if (allTrue.arguments.length === 2){
+    return one && two ? true : false;
+  } else {
+    return one && two && three ? true : false;
+  }
+}
+
+function atLeastOneTrue(one: boolean, two: boolean, three: boolean, four: boolean){
   return one || two || three || four ? true : false;
 }
 
@@ -59,11 +67,11 @@ var state = {
   checkWin: function () {
     let win = false;
     for (let i = 0; i < this.board.length; i++) {
-      var rows = all(this.board[i], (i === 0 || i === 3 || i === 6), (all(this.board[i], this.board[i + 1], this.board[i + 2]))),
-          cols = all(this.board[i], (i === 0 || i === 1 || i === 2), (all(this.board[i], this.board[i + 3], this.board[i + 6]))),
-          diagonalDown = all(this.board[0], all(this.board[0], this.board[4], this.board[8])),
-          diagonalUp = all(this.board[2], all(this.board[2], this.board[4], this.board[6]));
-      if (atLeastOne(rows, cols, diagonalDown, diagonalUp)) {
+      var rows = allTrue(this.board[i], (i === 0 || i === 3 || i === 6), (allMatch(this.board[i], this.board[i + 1], this.board[i + 2]))),
+          cols = allTrue(this.board[i], (i === 0 || i === 1 || i === 2), (allMatch(this.board[i], this.board[i + 3], this.board[i + 6]))),
+          diagonalDown = allTrue(this.board[0], allMatch(this.board[0], this.board[4], this.board[8])),
+          diagonalUp = allTrue(this.board[2], allMatch(this.board[2], this.board[4], this.board[6]));
+      if (atLeastOneTrue(rows, cols, diagonalDown, diagonalUp)) {
         win = true;
       }
     }

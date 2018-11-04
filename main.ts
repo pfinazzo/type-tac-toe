@@ -8,11 +8,12 @@ function compare(valOne: string, valTwo: string, valThree: string) {
 }
 
 type State = {
-  X: string;
-  O: string;
+  playerX: string;
+  playerO: string;
   currentTurn: string;
   playerXscore: number;
   playerOscore: number;
+  tieScore: number;
 }
 
 var state = {

@@ -6,14 +6,16 @@ var state = {
     playerX: "X",
     playerO: "O",
     currentTurn: "",
-    nextTurn: function () {
-        return this.currentTurn === "X" ? "O" : "X";
-    },
     startingTurn: "",
     board: null,
     playerXscore: 0,
     playerOscore: 0,
     tieScore: 0,
+    init: function () {
+        this.startingTurn === "X" ? this.startingTurn = "O" : this.startingTurn = "X";
+        this.currentTurn = this.startingTurn;
+        this.clearBoard();
+    },
     clearBoard: function () {
         this.board = (new Array(9));
         this.board.fill("");
@@ -21,11 +23,6 @@ var state = {
             var cell = document.getElementById(i.toString());
             cell.textContent = "";
         }
-    },
-    init: function () {
-        this.startingTurn === "X" ? this.startingTurn = "O" : this.startingTurn = "X";
-        this.currentTurn = this.startingTurn;
-        this.clearBoard();
     },
     move: function (place) {
         if (!this.board[place]) {
@@ -37,35 +34,25 @@ var state = {
         return (this.currentTurn === this.playerX ? this.currentTurn = this.playerO : this.currentTurn = this.playerX);
     },
     checkWin: function () {
-        var _this = this;
         var win = false;
-        var checkRows = function () {
-            for (var i = 0; i < _this.board.length; i++) {
-                if (_this.board[i] && (i === 0 || i === 3 || i === 6) && (compare(_this.board[i], _this.board[i + 1], _this.board[i + 2]))) {
-                    win = true;
-                }
+        for (var i = 0; i < this.board.length; i++) {
+            // rows
+            if (this.board[i] && (i === 0 || i === 3 || i === 6) && (compare(this.board[i], this.board[i + 1], this.board[i + 2]))) {
+                win = true;
             }
-        };
-        var checkCols = function () {
-            for (var i = 0; i < _this.board.length; i++) {
-                if (_this.board[i] && (i === 0 || i === 1 || i === 2) && (compare(_this.board[i], _this.board[i + 3], _this.board[i + 6]))) {
-                    win = true;
-                }
+            // columns
+            if (this.board[i] && (i === 0 || i === 1 || i === 2) && (compare(this.board[i], this.board[i + 3], this.board[i + 6]))) {
+                win = true;
             }
-        };
-        var checkDiagonals = function () {
             // diagonal down
-            if (_this.board[0] && compare(_this.board[0], _this.board[4], _this.board[8])) {
+            if (this.board[0] && compare(this.board[0], this.board[4], this.board[8])) {
                 win = true;
             }
             //diagonal up
-            if (_this.board[2] && compare(_this.board[2], _this.board[4], _this.board[6])) {
+            if (this.board[2] && compare(this.board[2], this.board[4], this.board[6])) {
                 win = true;
             }
-        };
-        checkRows();
-        checkCols();
-        checkDiagonals();
+        }
         if (win) {
             this.scoreAdd();
         }
@@ -76,6 +63,9 @@ var state = {
             tieScore.textContent = this.tieScore;
             return this.init();
         }
+    },
+    nextTurn: function () {
+        return this.currentTurn === "X" ? "O" : "X";
     },
     scoreAdd: function () {
         this.nextTurn() === "X" ? this.playerXscore++ : this.playerOscore++;

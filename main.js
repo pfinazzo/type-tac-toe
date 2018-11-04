@@ -91,6 +91,5 @@ table.onclick = function (e) {
     target.textContent = state.board[idx];
     state.checkWin();
     state.checkTie();
-    console.log(state);
 };
 state.init();

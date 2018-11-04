@@ -16,8 +16,8 @@ type State = {
 }
 
 var state = {
-  playerOne: "X",
-  playerTwo: "O",
+  playerX: "X",
+  playerO: "O",
   currentTurn: "",
   nextTurn: function () {
     return this.currentTurn === "X" ? "O" : "X"
@@ -47,7 +47,7 @@ var state = {
     }
   },
   switchTurn: function () {
-    return (this.currentTurn === this.playerOne ? this.currentTurn = this.playerTwo : this.currentTurn = this.playerOne);
+    return (this.currentTurn === this.playerX ? this.currentTurn = this.playerO : this.currentTurn = this.playerX);
   },
   checkWin: function () {
     let win = false
@@ -104,6 +104,7 @@ table.onclick = function (e) {
   target.textContent = state.board[idx];
   state.checkWin();
   state.checkTie();
+  console.log(state);
 }
 
 state.init();

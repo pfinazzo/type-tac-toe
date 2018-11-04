@@ -3,11 +3,11 @@ var table = document.getElementById("table"),
   tieScore = document.getElementsByTagName("p")[1],
   oScore = document.getElementsByTagName("p")[2]
 
-function compare(valOne: string | boolean, valTwo: string | boolean, valThree?: string | boolean) {
+function all(valOne: string | boolean, valTwo: string | boolean, valThree?: string | boolean) {
     return valOne === valTwo && valOne === valThree ? true : false;
 }
 
-function compareBool(one: boolean, two: boolean, three: boolean, four: boolean){
+function atLeastOne(one: boolean, two: boolean, three: boolean, four: boolean){
   return one || two || three || four ? true : false;
 }
 
@@ -59,11 +59,11 @@ var state = {
   checkWin: function () {
     let win = false;
     for (let i = 0; i < this.board.length; i++) {
-      var rows = compare(this.board[i], (i === 0 || i === 3 || i === 6), (compare(this.board[i], this.board[i + 1], this.board[i + 2]))),
-          cols = compare(this.board[i], (i === 0 || i === 1 || i === 2), (compare(this.board[i], this.board[i + 3], this.board[i + 6]))),
-          diagonalDown = compare(this.board[0], compare(this.board[0], this.board[4], this.board[8])),
-          diagonalUp = compare(this.board[2], compare(this.board[2], this.board[4], this.board[6]));
-      if (compareBool(rows, cols, diagonalDown, diagonalUp)) {
+      var rows = all(this.board[i], (i === 0 || i === 3 || i === 6), (all(this.board[i], this.board[i + 1], this.board[i + 2]))),
+          cols = all(this.board[i], (i === 0 || i === 1 || i === 2), (all(this.board[i], this.board[i + 3], this.board[i + 6]))),
+          diagonalDown = all(this.board[0], all(this.board[0], this.board[4], this.board[8])),
+          diagonalUp = all(this.board[2], all(this.board[2], this.board[4], this.board[6]));
+      if (atLeastOne(rows, cols, diagonalDown, diagonalUp)) {
         win = true;
       }
     }

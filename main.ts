@@ -1,6 +1,7 @@
 var table = document.getElementById("table"),
   xScore = document.getElementsByTagName("p")[0],
-  oScore = document.getElementsByTagName("p")[1]
+  tieScore = document.getElementsByTagName("p")[1],
+  oScore = document.getElementsByTagName("p")[2]
 
 function compare(valOne: string, valTwo: string, valThree: string) {
   return valOne === valTwo && valOne === valThree ? true : false; 
@@ -25,6 +26,7 @@ var state = {
   board: null,
   playerXscore: 0,
   playerOscore: 0,
+  tieScore: 0,
   clearBoard: function () {
     this.board = (new Array<string>(9));
     this.board.fill("");
@@ -80,6 +82,13 @@ var state = {
       this.scoreAdd();
     }
   },
+  checkTie: function(){
+    if (!this.board.includes("")){
+      this.tieScore++;
+      tieScore.textContent = this.tieScore;
+      return this.init();
+    }
+  },
   scoreAdd: function () {
     this.nextTurn() === "X" ? this.playerXscore++ : this.playerOscore++;
     xScore.textContent = this.playerXscore;
@@ -94,6 +103,7 @@ table.onclick = function (e) {
   state.move(idx);
   target.textContent = state.board[idx];
   state.checkWin();
+  state.checkTie();
 }
 
 state.init();

@@ -28,10 +28,23 @@ td {
 
 #x-score {
   float: left;
-  width: 110px;
+  width: 90px;
 }
 
 #o-score {
   float: right;
-  width: 110px;
+  width: 90px;
+}
+
+#tie-score {
+  text-align: center;
+  width: 90px;
+  z-index: 1;
+  display: inline-block;
+}
+
+#scores {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
 }

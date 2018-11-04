@@ -1,0 +1,35 @@
+* {
+  box-sizing: "border-box"
+}
+
+.container {
+  margin-top: 150px;
+}
+
+.table {
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+  table-layout: fixed;
+}
+
+p {
+  text-align: center;
+}
+
+td {
+  margin: auto;
+  vertical-align: middle !important;
+  height: 33%;
+  height: 33%;
+  margin-top: 100px;
+  text-align: center;
+}
+
+#x-score {
+  float: left;
+}
+
+#o-score {
+  float: right;
+}

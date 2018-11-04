@@ -3,17 +3,20 @@ var table = document.getElementById("table"),
   tieScore = document.getElementsByTagName("p")[1],
   oScore = document.getElementsByTagName("p")[2]
 
+
+//----------------- helper functions ---------------------------
 function allMatch(valOne: string, valTwo: string, valThree: string) {
-    return valOne === valTwo && valOne === valThree ? true : false;
+  return valOne === valTwo && valOne === valThree ? true : false;
 }
 
 function allTrue(one: boolean, two: boolean, three?: boolean){
- return allTrue.arguments.length === 2 ? (one && two ? true : false) : (one && two && three ? true : false);
+return allTrue.arguments.length === 2 ? (one && two ? true : false) : (one && two && three ? true : false);
 }
 
 function atLeastOneTrue(one: boolean, two: boolean, three: boolean, four: boolean){
-  return one || two || three || four ? true : false;
+return one || two || three || four ? true : false;
 }
+
 
 type State = {
   playerX: string;

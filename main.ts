@@ -8,11 +8,7 @@ function allMatch(valOne: string, valTwo: string, valThree: string) {
 }
 
 function allTrue(one: boolean, two: boolean, three?: boolean){
-  if (allTrue.arguments.length === 2){
-    return one && two ? true : false;
-  } else {
-    return one && two && three ? true : false;
-  }
+ return allTrue.arguments.length === 2 ? (one && two ? true : false) : (one && two && three ? true : false);
 }
 
 function atLeastOneTrue(one: boolean, two: boolean, three: boolean, four: boolean){

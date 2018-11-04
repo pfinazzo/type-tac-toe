@@ -3,12 +3,7 @@ function allMatch(valOne, valTwo, valThree) {
     return valOne === valTwo && valOne === valThree ? true : false;
 }
 function allTrue(one, two, three) {
-    if (allTrue.arguments.length === 2) {
-        return one && two ? true : false;
-    }
-    else {
-        return one && two && three ? true : false;
-    }
+    return allTrue.arguments.length === 2 ? (one && two ? true : false) : (one && two && three ? true : false);
 }
 function atLeastOneTrue(one, two, three, four) {
     return one || two || three || four ? true : false;

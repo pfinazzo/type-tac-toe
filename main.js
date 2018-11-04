@@ -1,4 +1,5 @@
 var table = document.getElementById("table"), xScore = document.getElementsByTagName("p")[0], tieScore = document.getElementsByTagName("p")[1], oScore = document.getElementsByTagName("p")[2];
+//----------------- helper functions ---------------------------
 function allMatch(valOne, valTwo, valThree) {
     return valOne === valTwo && valOne === valThree ? true : false;
 }

@@ -2,7 +2,7 @@ var table = document.getElementById("table"),
     xScore = document.getElementsByTagName("p")[0],
     oScore = document.getElementsByTagName("p")[1]
 
-function compare(valOne, valTwo, valThree) {
+function compare(valOne: string, valTwo: string, valThree: string) {
   if (valOne === valTwo && valOne === valThree) {
     return true;
   } else {

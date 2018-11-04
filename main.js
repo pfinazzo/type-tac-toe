@@ -1,11 +1,6 @@
 var table = document.getElementById("table"), xScore = document.getElementsByTagName("p")[0], oScore = document.getElementsByTagName("p")[1];
 function compare(valOne, valTwo, valThree) {
-    if (valOne === valTwo && valOne === valThree) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return valOne === valTwo && valOne === valThree ? true : false;
 }
 var state = {
     playerOne: "X",
@@ -36,7 +31,6 @@ var state = {
             this.board.splice(place, 1, this.currentTurn);
             this.switchTurn();
         }
-        console.log(this.board);
     },
     switchTurn: function () {
         return (this.currentTurn === this.playerOne ? this.currentTurn = this.playerTwo : this.currentTurn = this.playerOne);
@@ -72,7 +66,6 @@ var state = {
         checkCols();
         checkDiagonals();
         if (win) {
-            console.log("winner is " + this.nextTurn());
             this.scoreAdd();
         }
     },

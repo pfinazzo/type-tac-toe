@@ -1,13 +1,9 @@
 var table = document.getElementById("table"),
-    xScore = document.getElementsByTagName("p")[0],
-    oScore = document.getElementsByTagName("p")[1]
+  xScore = document.getElementsByTagName("p")[0],
+  oScore = document.getElementsByTagName("p")[1]
 
 function compare(valOne: string, valTwo: string, valThree: string) {
-  if (valOne === valTwo && valOne === valThree) {
-    return true;
-  } else {
-    return false;
-  }
+  return valOne === valTwo && valOne === valThree ? true : false; 
 }
 
 type State = {
@@ -29,10 +25,10 @@ var state = {
   board: null,
   playerXscore: 0,
   playerOscore: 0,
-  clearBoard: function(){
+  clearBoard: function () {
     this.board = (new Array<string>(9));
     this.board.fill("");
-    for (let i = 0; i < this.board.length; i++){
+    for (let i = 0; i < this.board.length; i++) {
       let cell = document.getElementById(i.toString());
       cell.textContent = "";
     }
@@ -47,7 +43,6 @@ var state = {
       this.board.splice(place, 1, this.currentTurn);
       this.switchTurn();
     }
-    console.log(this.board);
   },
   switchTurn: function () {
     return (this.currentTurn === this.playerOne ? this.currentTurn = this.playerTwo : this.currentTurn = this.playerOne);
@@ -81,12 +76,11 @@ var state = {
     checkRows();
     checkCols();
     checkDiagonals();
-    if (win){
-      console.log(`winner is ${this.nextTurn()}`)
+    if (win) {
       this.scoreAdd();
     }
   },
-  scoreAdd: function(){
+  scoreAdd: function () {
     this.nextTurn() === "X" ? this.playerXscore++ : this.playerOscore++;
     xScore.textContent = this.playerXscore;
     oScore.textContent = this.playerOscore;

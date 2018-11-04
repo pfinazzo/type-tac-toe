@@ -1,5 +1,5 @@
 * {
-  box-sizing: "border-box"
+  box-sizing: "border-box" !important;
 }
 
 .container {
@@ -28,8 +28,10 @@ td {
 
 #x-score {
   float: left;
+  width: 110px;
 }
 
 #o-score {
   float: right;
+  width: 110px;
 }

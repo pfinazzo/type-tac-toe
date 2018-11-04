@@ -17,12 +17,19 @@ var state = {
     startingTurn: "",
     board: null,
     playerXscore: 0,
-    payerOscore: 0,
-    init: function () {
+    playerOscore: 0,
+    clearBoard: function () {
         this.board = (new Array(9));
         this.board.fill("");
+        for (var i = 0; i < this.board.length; i++) {
+            var cell = document.getElementById(i.toString());
+            cell.textContent = "";
+        }
+    },
+    init: function () {
         this.startingTurn === "X" ? this.startingTurn = "O" : this.startingTurn = "X";
         this.currentTurn = this.startingTurn;
+        this.clearBoard();
     },
     move: function (place) {
         if (!this.board[place]) {
@@ -73,6 +80,7 @@ var state = {
         this.nextTurn() === "X" ? this.playerXscore++ : this.playerOscore++;
         xScore.textContent = this.playerXscore;
         oScore.textContent = this.playerOscore;
+        this.init();
     }
 };
 table.onclick = function (e) {

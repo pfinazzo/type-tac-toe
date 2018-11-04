@@ -28,12 +28,19 @@ var state = {
   startingTurn: "",
   board: null,
   playerXscore: 0,
-  payerOscore: 0,
-  init: function () {
+  playerOscore: 0,
+  clearBoard: function(){
     this.board = (new Array<string>(9));
     this.board.fill("");
+    for (let i = 0; i < this.board.length; i++){
+      let cell = document.getElementById(i.toString());
+      cell.textContent = "";
+    }
+  },
+  init: function () {
     this.startingTurn === "X" ? this.startingTurn = "O" : this.startingTurn = "X";
     this.currentTurn = this.startingTurn;
+    this.clearBoard();
   },
   move: function (place: number) {
     if (!this.board[place]) {
@@ -77,13 +84,13 @@ var state = {
     if (win){
       console.log(`winner is ${this.nextTurn()}`)
       this.scoreAdd();
-      this.init();
     }
   },
   scoreAdd: function(){
     this.nextTurn() === "X" ? this.playerXscore++ : this.playerOscore++;
     xScore.textContent = this.playerXscore;
     oScore.textContent = this.playerOscore;
+    this.init();
   },
 }
 

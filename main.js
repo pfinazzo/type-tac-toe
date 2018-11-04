@@ -2,6 +2,9 @@ var table = document.getElementById("table"), xScore = document.getElementsByTag
 function compare(valOne, valTwo, valThree) {
     return valOne === valTwo && valOne === valThree ? true : false;
 }
+function compareBool(one, two, three, four) {
+    return one || two || three || four ? true : false;
+}
 var state = {
     playerX: "X",
     playerO: "O",
@@ -36,20 +39,8 @@ var state = {
     checkWin: function () {
         var win = false;
         for (var i = 0; i < this.board.length; i++) {
-            // rows
-            if (this.board[i] && (i === 0 || i === 3 || i === 6) && (compare(this.board[i], this.board[i + 1], this.board[i + 2]))) {
-                win = true;
-            }
-            // columns
-            if (this.board[i] && (i === 0 || i === 1 || i === 2) && (compare(this.board[i], this.board[i + 3], this.board[i + 6]))) {
-                win = true;
-            }
-            // diagonal down
-            if (this.board[0] && compare(this.board[0], this.board[4], this.board[8])) {
-                win = true;
-            }
-            //diagonal up
-            if (this.board[2] && compare(this.board[2], this.board[4], this.board[6])) {
+            var rows = this.board[i] && (i === 0 || i === 3 || i === 6) && (compare(this.board[i], this.board[i + 1], this.board[i + 2])), cols = compare(this.board[i], (i === 0 || i === 1 || i === 2), (compare(this.board[i], this.board[i + 3], this.board[i + 6]))), diagonalDown = compare(this.board[0], compare(this.board[0], this.board[4], this.board[8])), diagonalUp = compare(this.board[2], compare(this.board[2], this.board[4], this.board[6]));
+            if (compareBool(rows, cols, diagonalDown, diagonalUp)) {
                 win = true;
             }
         }
